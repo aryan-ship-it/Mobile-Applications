@@ -14,7 +14,7 @@ fun randomDay() : String {
 
 fun fishFood(day: String) : String{
     var food = " "
-    when(day){
+    when (day){
         "Monday" -> food = "flakes"
         "Wednesday" -> food = "redworms"
         "Thursday" -> food = "granules"
