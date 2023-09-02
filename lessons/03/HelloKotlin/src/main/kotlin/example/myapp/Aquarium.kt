@@ -1,6 +1,8 @@
 package example.myapp
 
-open class Aquarium(var length:Int = 100,var width: Int = 20,var height: Int = 40) {
+import kotlin.math.PI
+
+open class Aquarium(var length:Int = 100,var width: Int = 20,open var height: Int = 40) {
 
     init{
         println("aquarium initialized")
@@ -35,12 +37,63 @@ open class Aquarium(var length:Int = 100,var width: Int = 20,var height: Int = 4
                 "Length: $length cm " +
                 "Height: $height cm ")
 
-        println("Volume: $volume liters")
+        println("Volume: $volume liters Water : $water liters (${water /volume * 100.0}% full)")
     }
+
+
+}
+
+
+class TowerTank (override var height: Int, var diameter: Int) :Aquarium(height = height, width = diameter, length = diameter){
+    override var volume: Int
+        get() = (width/2 * length/2 * height/1000 * PI).toInt()
+        set(value){
+            height = ((value*1000/ PI)/(width/2 * length/2)).toInt()
+        }
+
+    override var water = volume * 0.8
+    override val shape = "cylinder"
+
 
 }
 
 
 
+
+
+abstract class AquariumFish : FishAction {
+    abstract val color: String
+    override fun eat() = println("yum")
+}
+
+
+
+
+//class Shark: AquariumFish(){
+//    override val color = "grey"
+//}
+
+//class Plecostomus: AquariumFish(){
+//    override val color = "gold"
+//
+//}
+
+interface FishAction{
+    fun eat()
+}
+
+class Shark : AquariumFish(),FishAction{
+    override val color = "grey"
+    override fun eat() {
+        println("hunt and eat fish")
+    }
+}
+
+class Plecostomus: AquariumFish(), FishAction{
+    override val color = "gold"
+    override fun eat(){
+        println("eat algae")
+    }
+}
 
 
