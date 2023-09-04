@@ -58,9 +58,6 @@ class TowerTank (override var height: Int, var diameter: Int) :Aquarium(height =
 }
 
 
-
-
-
 abstract class AquariumFish : FishAction {
     abstract val color: String
     override fun eat() = println("yum")
@@ -93,13 +90,19 @@ class Shark : FishAction, FishColor {
     }
 }
 
-class Plecostomus :FishAction, FishColor by GoldColor {
-    override val color = "gold"
-    override fun eat(){
-        println("eat algae")
-    }
-}
+class Plecostomus (fishColor: FishColor = GoldColor):
+    FishAction by PrintingFishAction("eat algae"),
+    FishColor by fishColor
 
 object GoldColor : FishColor {
     override val color = "gold"
 }
+
+class PrintingFishAction(val food: String) : FishAction {
+    override fun eat(){
+        println(food)
+    }
+}
+
+
+
