@@ -104,5 +104,12 @@ class PrintingFishAction(val food: String) : FishAction {
     }
 }
 
+fun AquariumPlant.isRed() = color == "red"
+
+
+open class AquariumPlant(val color: String, private val size: Int)
+
+class GreenLeafyPlant(size:Int) :AquariumPlant("green", size)
+
 
 
