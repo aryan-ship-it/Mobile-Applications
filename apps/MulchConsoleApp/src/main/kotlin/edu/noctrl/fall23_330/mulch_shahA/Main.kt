@@ -4,6 +4,12 @@ import edu.noctrl.fall23_330.mulch_shahA.MulchPricer
 import edu.noctrl.fall23_330.mulch_shahA.PlantingBedDimensions
 import kotlin.math.ceil
 
+
+//Author : Aryan Shah
+// Prof Aloia
+// Mulch Console App
+
+
 class MulchOrder ( val plantingBedDimensions: PlantingBedDimensions){
     private val plantingBedDimensionsList:MutableList<PlantingBedDimensions>  = mutableListOf()
 
@@ -57,11 +63,11 @@ fun main(){
 *
 */
 
-    val mulchOrder1 =  MulchOrder(PlantingBedDimensions(30.0,10.0,5.0))
-    mulchOrder1.addPlantingBedDimension(PlantingBedDimensions(30.0,10.0,5.0))
-    mulchOrder1.addPlantingBedDimension(PlantingBedDimensions(43.0,14.0,4.0))
-    mulchOrder1.mulchPricer =  cubicYardPricer
-    mulchOrder1.printOrderDetails()
+//    val mulchOrder1 =  MulchOrder(PlantingBedDimensions(30.0,10.0,5.0))
+//    mulchOrder1.addPlantingBedDimension(PlantingBedDimensions(30.0,10.0,5.0))
+//    mulchOrder1.addPlantingBedDimension(PlantingBedDimensions(43.0,14.0,4.0))
+//    mulchOrder1.mulchPricer =  cubicYardPricer
+//    mulchOrder1.printOrderDetails()
 
     val mulchOrder2 =  MulchOrder(PlantingBedDimensions(30.0,10.0,5.0))
     mulchOrder2.addPlantingBedDimension(PlantingBedDimensions(30.0,10.0,5.0))
