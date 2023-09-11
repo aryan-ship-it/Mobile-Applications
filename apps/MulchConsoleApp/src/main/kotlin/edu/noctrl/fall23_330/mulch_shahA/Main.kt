@@ -38,7 +38,7 @@ class MulchOrder ( val plantingBedDimensions: PlantingBedDimensions){
         }
         println("Total Cubic Yards: ${cubicYards()}")
         println("Total Cubic Feet : ${cubicFeet()}")
-        println("Total Price: ${mulchPricer?.calculatePrice(cubicYards())} ")
+        println("Total Price: $ ${mulchPricer?.calculatePrice(cubicYards())} ")
 
     }
 
@@ -48,12 +48,20 @@ class MulchOrder ( val plantingBedDimensions: PlantingBedDimensions){
 
 
 fun main(){
+    val cubicYardPricer = CubicYardMulchPricer()
+    val cubicFootPricer = CubicFootMulchPricer()
+
     val mulchOrder1 =  MulchOrder(PlantingBedDimensions(30.0,10.0,5.0))
     mulchOrder1.addPlantingBedDimension(PlantingBedDimensions(30.0,10.0,5.0))
     mulchOrder1.addPlantingBedDimension(PlantingBedDimensions(43.0,14.0,4.0))
-    val cubicYardPricer = CubicYardMulchPricer()
     mulchOrder1.mulchPricer =  cubicYardPricer
     mulchOrder1.printOrderDetails()
 
-    
+    val mulchOrder2 =  MulchOrder(PlantingBedDimensions(30.0,10.0,5.0))
+    mulchOrder2.addPlantingBedDimension(PlantingBedDimensions(30.0,10.0,5.0))
+    mulchOrder2.addPlantingBedDimension(PlantingBedDimensions(43.0,14.0,4.0))
+    mulchOrder2.mulchPricer =  cubicFootPricer
+    mulchOrder2.printOrderDetails()
+
+
 }
