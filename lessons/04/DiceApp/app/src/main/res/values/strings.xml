@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">DiceApp</string>
+    <string name="button">Button</string>
+    <string name="imageView">ImageView</string>
+    <string name="imageView2">ImageView2</string>
+    <string name="roll">Roll</string>
+</resources>
