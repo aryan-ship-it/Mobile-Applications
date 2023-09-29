@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Mulch Type!"
+        android:textSize="24sp"
+        android:textColor="#000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/radioGroup"
+        />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/textView"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+
+        <!-- RadioButton 1 -->
+        <RadioButton
+            android:id="@+id/premiumBark"
+            android:layout_width="400dp"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Premium Bark"
+            tools:ignore="VisualLintButtonSize" /> <!-- Checked by default -->
+        <TextView
+            android:id="@+id/premiumBarkprice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="$56/ cubic Yard" />
+
+        <!-- RadioButton 2 -->
+        <RadioButton
+            android:id="@+id/specialBlend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Special Blend"
+            app:layout_constraintTop_toBottomOf="@id/premiumBark"
+            tools:ignore="VisualLintButtonSize" />
+
+        <TextView
+            android:id="@+id/specialBlendprice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="$35/ cubic Yard" />
+
+        <!-- RadioButton 3 -->
+        <RadioButton
+            android:id="@+id/tripleGround"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Triple Ground"
+            app:layout_constraintTop_toBottomOf="@id/specialBlend"
+            tools:ignore="VisualLintButtonSize" />
+
+        <TextView
+            android:id="@+id/tripleGroundPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="$40/ cubic Yard" />
+
+        <RadioButton
+            android:id="@+id/chocolateDyed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Chocolate Dyed"
+            app:layout_constraintTop_toBottomOf="@id/tripleGround"
+            tools:ignore="VisualLintButtonSize" />
+
+        <TextView
+            android:id="@+id/chocolateDyedPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="$38/ cubic Yard" />
+
+        <RadioButton
+            android:id="@+id/redDyed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Red Dyed"
+            app:layout_constraintTop_toBottomOf="@id/chocolateDyed"
+            tools:ignore="VisualLintButtonSize" />
+
+        <TextView
+            android:id="@+id/redDyedPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="$38/ cubic Yard" />
+
+        <RadioButton
+            android:id="@+id/blackDyed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Black Dyed"
+            app:layout_constraintTop_toBottomOf="@id/redDyed"
+            tools:ignore="VisualLintButtonSize" />
+
+        <TextView
+            android:id="@+id/blackDyedPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="$38/ cubic Yard" />
+
+        <RadioButton
+            android:id="@+id/playMat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Play Mat"
+            app:layout_constraintTop_toBottomOf="@id/blackDyed"
+            tools:ignore="VisualLintButtonSize" />
+
+        <TextView
+            android:id="@+id/playMatPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="$38/ cubic Yard" />
+
+        <RadioButton
+            android:id="@+id/cedar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cedar"
+            app:layout_constraintTop_toBottomOf="@id/playMat"
+            tools:ignore="VisualLintButtonSize" />
+
+        <TextView
+            android:id="@+id/cedarPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="$38/ cubic Yard" />
+
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/myButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.915"
+        app:layout_constraintStart_toEndOf="@id/radioGroup"
+        app:layout_constraintTop_toBottomOf="@id/radioGroup"
+        android:text ="Next"
+        tools:ignore="VisualLintBounds" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
