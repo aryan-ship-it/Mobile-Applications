@@ -30,8 +30,8 @@
             android:id="@+id/premiumBark"
             android:layout_width="400dp"
             android:layout_height="wrap_content"
-            android:checked="true"
             android:text="Premium Bark"
+            android:checked="true"
             tools:ignore="VisualLintButtonSize" /> <!-- Checked by default -->
         <TextView
             android:id="@+id/premiumBarkprice"
@@ -143,16 +143,17 @@
     </RadioGroup>
 
     <Button
-        android:id="@+id/myButton"
+        android:id="@+id/nextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="28dp"
+        android:text="Next"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.915"
-        app:layout_constraintStart_toEndOf="@id/radioGroup"
-        app:layout_constraintTop_toBottomOf="@id/radioGroup"
-        android:text ="Next"
-        tools:ignore="VisualLintBounds" />
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/radioGroup" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
