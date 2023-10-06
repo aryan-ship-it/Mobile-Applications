@@ -3,6 +3,7 @@ package com.example.mulchapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.example.mulchapp.databinding.ActivityOrderSummaryBinding
 
 @Suppress("DEPRECATION")
@@ -32,6 +33,11 @@ class OrderSummaryActivity : AppCompatActivity() {
         binding.deliveryChargeVal.text = "$ ${orderDetail?.deliveryCharge}"
         binding.totalVal.text = "$ ${orderDetail?.totalPrice}"
         binding.salesTaxVal.text = "$ ${orderDetail?.salesTax}"
+
+        binding.placeOrderButton.setOnClickListener {
+            Toast.makeText(this@OrderSummaryActivity,"Order has been place", Toast.LENGTH_SHORT).show()
+        }
+
 
 
 

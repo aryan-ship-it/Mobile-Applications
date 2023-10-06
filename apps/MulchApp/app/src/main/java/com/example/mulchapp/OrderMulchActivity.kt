@@ -15,6 +15,8 @@ import kotlin.math.round
 
 const val EXTRA_TYPE_KEY2 = "com.example.mulchapp.MainActivity.typekey"
 
+
+
 class OrderMulchActivity : AppCompatActivity() {
     private val mulchCollection = mutableMapOf<String,Int>(
         "Premium Bark" to 56,
@@ -119,7 +121,6 @@ class OrderMulchActivity : AppCompatActivity() {
                     calcDeliveryCharge(editable.toString())
                     calcTotal()
                 }
-
                 else{
                     deliveryCharge = 0.0
                     binding.deliveryChargeVal.text = "$ ${deliveryCharge}"
