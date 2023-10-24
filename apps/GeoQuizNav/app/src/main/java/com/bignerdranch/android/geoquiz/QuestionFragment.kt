@@ -10,15 +10,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.setFragmentResultListener
+import androidx.navigation.fragment.findNavController
 import com.bignerdranch.android.geoquiz.databinding.ActivityMainBinding
 import com.bignerdranch.android.geoquiz.databinding.FragmentQuestionBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-private const val TAG = "MainActivity"
+private const val TAG = "QuestionFragment"
 const val CURRENT_INDEX_KEY = "CURRENT_INDEX_KEY"
+
 
 /**
  * A simple [Fragment] subclass.
@@ -55,7 +57,8 @@ class QuestionFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        arguments?.let {
+        setFragmentResultListener(CheatFragment.CHEAT_RESULT_KEY){_,bundle ->
+            isCheater = bundle.getBoolean(CheatFragment.IS_CHEATER)
         }
     }
 
@@ -95,10 +98,9 @@ class QuestionFragment : Fragment() {
 
         binding.cheatButton.setOnClickListener {
             // Start the cheat activity
-            val intent = Intent(this, CheatActivity::class.java)
             val answer = questionBank[currentIndex].answer
-            intent.putExtra(EXTRA_ANSWER_KEY, answer)
-            cheatLauncher.launch(intent)
+            val action = QuestionFragmentDirections.actionQuestionFragmentToCheatFragment(answer)
+            findNavController().navigate(action)
         }
     }
 

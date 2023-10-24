@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
 import com.bignerdranch.android.geoquiz.databinding.ActivityCheatBinding
 import com.bignerdranch.android.geoquiz.databinding.ActivityMainBinding
 import com.bignerdranch.android.geoquiz.databinding.FragmentCheatBinding
@@ -14,8 +16,8 @@ import com.bignerdranch.android.geoquiz.databinding.FragmentQuestionBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+const val EXTRA_ANSWER_SHOWN = "com.bignerdranch.android.geoquiz.answer_shown"
+private const val ARG_CORRECT_ANSWER = "answer"
 
 /**
  * A simple [Fragment] subclass.
@@ -27,15 +29,17 @@ class CheatFragment : Fragment() {
     private var answer = false
     private val binding get() = _binding!!
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var correctAnswer:Boolean = false
+    companion object {
+        val CHEAT_RESULT_KEY = "cheatResultKey"
+        val IS_CHEATER = "isCheater"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            correctAnswer = it.getBoolean(ARG_CORRECT_ANSWER)
         }
     }
 
@@ -51,36 +55,15 @@ class CheatFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        answer = activity?.intent.getBooleanExtra(EXTRA_ANSWER_KEY, false)
         binding.showAnswerButton.setOnClickListener {
             val textVal = when {
-                answer -> R.string.true_button
+                correctAnswer -> R.string.true_button
                 else -> R.string.false_button
             }
             binding.answerTextView.setText(textVal)
-            val intentData = Intent().apply {
-                putExtra(EXTRA_ANSWER_SHOWN, true)
-            }
+            setFragmentResult(CHEAT_RESULT_KEY, bundleOf(IS_CHEATER to true))
         }
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CheatFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CheatFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+
 }
