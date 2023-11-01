@@ -55,6 +55,7 @@ class CheatFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.showAnswerButton.setOnClickListener {
             val textVal = when {
                 correctAnswer -> R.string.true_button

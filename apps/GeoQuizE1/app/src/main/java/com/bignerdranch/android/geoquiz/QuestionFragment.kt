@@ -1,6 +1,7 @@
 package com.bignerdranch.android.geoquiz
 
 import android.app.Activity
+import android.app.ProgressDialog.show
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -31,7 +32,7 @@ class QuestionFragment : Fragment() {
     private var _binding: FragmentQuestionBinding? = null
     private val binding get() = _binding!!
 
-
+    private var previousIndex = 0
     private var currentIndex = 0
     private var isCheater = false
     private val questionBank = listOf(
@@ -41,7 +42,22 @@ class QuestionFragment : Fragment() {
         Question(R.string.question_africa, false),
         Question(R.string.question_americas, true),
         Question(R.string.question_asia, true),
+        Question(R.string.question_amazon,true),
+        Question(R.string.question_greatWall,false),
+        Question(R.string.question_antartica,true),
+        Question(R.string.question_sahara,true),
+        Question(R.string.question_mountEverest,true),
+        Question(R.string.question_equator,true),
+        Question(R.string.question_russia,true),
+        Question(R.string.question_timezone,true),
+        Question(R.string.question_pacific,true),
+        Question(R.string.question_deadsea,true),
+        Question(R.string.question_uk,false),
+        Question(R.string.question_chile,false),
     )
+    private var userScore:Int = 0
+
+
 
     private val cheatLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -83,17 +99,47 @@ class QuestionFragment : Fragment() {
 
         binding.questionText.setText(questionBank[currentIndex].testResId)
 
+        binding.questionText.setOnClickListener {
+            if(!isEndOfList(currentIndex)){
+                previousIndex = currentIndex
+                currentIndex = (currentIndex + 1) % questionBank.size
+                binding.questionText.setText(questionBank[currentIndex].testResId)
+                displayAnswer(currentIndex)
+            }
+
+
+        }
+        binding.prevButton.setOnClickListener {
+            if(!isEndOfList(currentIndex)){
+                binding.questionText.setText(questionBank[previousIndex].testResId)
+                currentIndex = (currentIndex-1) % questionBank.size
+                previousIndex = currentIndex - 1
+                displayAnswer(currentIndex)
+            }
+
+        }
+
         binding.nextButton.setOnClickListener {
-            currentIndex = (currentIndex + 1) % questionBank.size
-            binding.questionText.setText(questionBank[currentIndex].testResId)
+            if(!isEndOfList(currentIndex)){
+                previousIndex = currentIndex
+                currentIndex = (currentIndex + 1) % questionBank.size
+                binding.questionText.setText(questionBank[currentIndex].testResId)
+                displayAnswer(currentIndex)
+            }
+
         }
 
         binding.trueButton.setOnClickListener {
-            checkAnswer(true)
+            if(questionBank[currentIndex].answered == false){
+                checkAnswer(true)
+            }
+
         }
 
         binding.falseButton.setOnClickListener {
-            checkAnswer(false)
+            if(questionBank[currentIndex].answered == false){
+                checkAnswer(false)
+            }
         }
 
         binding.cheatButton.setOnClickListener {
@@ -110,12 +156,33 @@ class QuestionFragment : Fragment() {
         outState.putInt(CURRENT_INDEX_KEY, this.currentIndex)
     }
 
+    private fun isEndOfList(currentIndex: Int):Boolean{
+        if(currentIndex == questionBank.size -1){
+            val userMessage:String = "Your Scored:${userScore} out of ${questionBank.size}"
+            Toast.makeText(getContext(),userMessage, Toast.LENGTH_SHORT).show()
+            return true
+        }
+        return false
+    }
+    private fun displayAnswer(currentIndex:Int){
+        if(questionBank[currentIndex].answered == true){
+            binding.displayAnswer.setText("Your answer was: ${questionBank[currentIndex].userAnswer}")
+        }
+        else{
+            binding.displayAnswer.setText(" ")
+        }
+    }
     private fun checkAnswer(userAnswer: Boolean) {
         val correctAnswer = questionBank[currentIndex].answer
+        questionBank[currentIndex].answered = true
+        questionBank[currentIndex].userAnswer = userAnswer.toString()
         val resId = when {
             isCheater -> R.string.judgment_toast
             userAnswer == correctAnswer -> R.string.correct_toast
             else -> R.string.incorrect_toast
+        }
+        if(userAnswer == correctAnswer){
+            userScore += 1
         }
         isCheater = false
 
