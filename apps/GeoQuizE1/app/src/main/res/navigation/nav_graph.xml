@@ -19,7 +19,7 @@
         android:label="fragment_cheat"
         tools:layout="@layout/fragment_cheat" >
         <argument
-            android:name="Answer"
+            android:name="answer"
             app:argType="boolean" />
     </fragment>
 </navigation>

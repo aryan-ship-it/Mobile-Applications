@@ -3,6 +3,7 @@ package com.bignerdranch.android.geoquiz
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import com.bignerdranch.android.geoquiz.databinding.ActivityCheatBinding
 import com.bignerdranch.android.geoquiz.databinding.ActivityMainBinding
 import com.bignerdranch.android.geoquiz.databinding.FragmentCheatBinding
 import com.bignerdranch.android.geoquiz.databinding.FragmentQuestionBinding
+import kotlin.properties.Delegates
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,16 +32,19 @@ class CheatFragment : Fragment() {
     private val binding get() = _binding!!
     // TODO: Rename and change types of parameters
     private var correctAnswer:Boolean = false
+
     companion object {
         val CHEAT_RESULT_KEY = "cheatResultKey"
         val IS_CHEATER = "isCheater"
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         arguments?.let {
             correctAnswer = it.getBoolean(ARG_CORRECT_ANSWER)
+            Log.d("Cheat Fragment", "${correctAnswer}")
         }
     }
 

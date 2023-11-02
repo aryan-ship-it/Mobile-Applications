@@ -144,8 +144,9 @@ class QuestionFragment : Fragment() {
 
         binding.cheatButton.setOnClickListener {
             // Start the cheat activity
-            val answer = questionBank[currentIndex].answer
+            val answer:Boolean = questionBank[currentIndex].answer
             val action = QuestionFragmentDirections.actionQuestionFragmentToCheatFragment(answer)
+            Log.d(TAG,"${answer}")
             findNavController().navigate(action)
         }
     }
@@ -158,7 +159,7 @@ class QuestionFragment : Fragment() {
 
     private fun isEndOfList(currentIndex: Int):Boolean{
         if(currentIndex == questionBank.size -1){
-            val userMessage:String = "Your Scored:${userScore} out of ${questionBank.size}"
+            val userMessage:String = "Your Scored:${userScore} out of ${questionBank.size} (${(userScore/questionBank.size)*100} %)"
             Toast.makeText(getContext(),userMessage, Toast.LENGTH_SHORT).show()
             return true
         }
