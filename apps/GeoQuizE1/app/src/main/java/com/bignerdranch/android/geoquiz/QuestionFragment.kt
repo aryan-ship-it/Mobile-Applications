@@ -16,6 +16,8 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.navigation.fragment.findNavController
 import com.bignerdranch.android.geoquiz.databinding.ActivityMainBinding
 import com.bignerdranch.android.geoquiz.databinding.FragmentQuestionBinding
+import java.lang.Exception
+import kotlin.math.roundToInt
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -110,12 +112,17 @@ class QuestionFragment : Fragment() {
 
         }
         binding.prevButton.setOnClickListener {
-            if(!isEndOfList(currentIndex)){
+            try{
                 binding.questionText.setText(questionBank[previousIndex].testResId)
                 currentIndex = (currentIndex-1) % questionBank.size
                 previousIndex = currentIndex - 1
                 displayAnswer(currentIndex)
+
+            }catch (e:Exception){
+                Log.d("Error On Previous Button", e.toString());
             }
+
+
 
         }
 
@@ -159,7 +166,7 @@ class QuestionFragment : Fragment() {
 
     private fun isEndOfList(currentIndex: Int):Boolean{
         if(currentIndex == questionBank.size -1){
-            val userMessage:String = "Your Scored:${userScore} out of ${questionBank.size} (${(userScore/questionBank.size)*100} %)"
+            val userMessage:String = "Your Scored:${userScore} out of ${questionBank.size} (${((userScore.toDouble()/questionBank.size.toDouble())*100).roundToInt()} %)"
             Toast.makeText(getContext(),userMessage, Toast.LENGTH_SHORT).show()
             return true
         }
