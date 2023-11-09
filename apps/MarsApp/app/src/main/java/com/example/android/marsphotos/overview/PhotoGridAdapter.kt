@@ -42,3 +42,4 @@ class PhotoGridAdapter : ListAdapter<MarsPhoto,
         }
     }
 }
+
