@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.WordDefinitionFragment">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.wordappdictionary.viewmodel.ViewModelDict" />
+
+        <variable
+            name="wordDefinitionFragment"
+            type="com.example.wordappdictionary.ui.WordDefinitionFragment" />
+
+        <variable
+            name="word"
+            type="com.example.wordappdictionary.database.Word" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F2F5FF"
+        >
+
+        <TextView
+            android:id="@+id/word_definition_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Word Definition"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toTopOf="@id/guideline1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="100dp" />
+
+        <TextView
+            android:id="@+id/word"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="35dp"
+            android:textColor="#2E3A59"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/guideline1"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+
+
+        <TextView
+            android:id="@+id/container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rectanglechart"
+            android:layout_marginTop="30dp"
+            app:layout_constraintTop_toBottomOf="@id/word"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <ScrollView
+            android:layout_width="300dp"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="@+id/container"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/container">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+
+                <ImageView
+                    android:id="@+id/image_definition"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    app:layout_constraintTop_toBottomOf="@id/word"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/wordDefinition"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:maxHeight="320dp"
+                    android:gravity="center"
+                    android:textSize="24sp"
+                    android:textColor="@color/black"
+                    app:layout_constraintTop_toBottomOf="@id/image_definition"
+                    app:layout_constraintBottom_toBottomOf="@id/container"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:scrollbars="vertical"
+                    tools:text="this is the sample"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+
+        <Switch
+            android:id="@+id/activation_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="55dp"
+            android:checked="true"
+            android:layout_marginBottom="60dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Active"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

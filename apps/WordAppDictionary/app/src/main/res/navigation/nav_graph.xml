@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/wordDictionaryHome">
+
+    <fragment
+        android:id="@+id/wordDictionaryHome"
+        android:name="com.example.wordappdictionary.ui.WordDictionaryHome"
+        android:label="fragment_word_dictionary_home"
+        tools:layout="@layout/fragment_word_dictionary_home" >
+        <action
+            android:id="@+id/action_wordDictionaryHome_to_wordDefinitionFragment"
+            app:destination="@id/wordDefinitionFragment" />
+        <action
+            android:id="@+id/action_wordDictionaryHome_to_wordSearchFragment"
+            app:destination="@id/wordSearchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/wordDefinitionFragment"
+        android:name="com.example.wordappdictionary.ui.WordDefinitionFragment"
+        android:label="fragment_word_definition"
+        tools:layout="@layout/fragment_word_definition" />
+    <fragment
+        android:id="@+id/wordSearchFragment"
+        android:name="com.example.wordappdictionary.ui.WordSearchFragment"
+        android:label="fragment_word_search"
+        tools:layout="@layout/fragment_word_search" >
+        <action
+            android:id="@+id/action_wordSearchFragment_to_wordAddFragment"
+            app:destination="@id/wordAddFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/wordAddFragment"
+        android:name="com.example.wordappdictionary.ui.WordAddFragment"
+        android:label="fragment_word_add"
+        tools:layout="@layout/fragment_word_add" >
+        <action
+            android:id="@+id/action_wordAddFragment_to_wordDictionaryHome"
+            app:destination="@id/wordDictionaryHome" />
+    </fragment>
+</navigation>
